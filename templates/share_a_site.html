@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/share_a_site" method="post" role="form" name="share_a_site_form" novalidate class="center-block">
+    <section layout="row" layout-align="center">
+        <md-input-container style="width:300px">
+            <label>Site Title (eg.SeraphNav)</label>
+            <input ng-model="site.title" name="site_title" required>
+        </md-input-container>
+    </section>
+    <section layout="row" layout-align="center">
+        <md-input-container style="width:300px">
+            <label>Site Description (eg.Just a Navigation Site)</label>
+            <input ng-model="site.desc" name="site_desc">
+        </md-input-container>
+    </section>
+    <section layout="row" layout-align="center">
+        <md-input-container>
+            <label>Site URL (eg.http://seraphnav.sigmastudio.me)</label>
+            <input type="url" ng-model="site.url" name="site_url" required>
+        </md-input-container>
+    </section>
+    <section layout="column" layout-align="center">
+        <md-button ng-disabled="share_a_site_form.$invalid">Submit</md-button>
+            <p class="text-danger error-flash" align="center" ng-if="share_a_site_form.site_title.$invalid">site title is required</p>
+            <p class="text-danger" align="center" ng-if="share_a_site_form.site_url.$invalid">url example: http://example.com</p>
+    </section>
+</form>
+{% endblock %}

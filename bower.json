@@ -1,0 +1,13 @@
+{
+  "name": "SeraphNav",
+  "version": "0.0.0",
+  "authors": [
+    "Joshua <joshua7v@hotmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular-material": "~0.10.0",
+    "angular-ui-router": "~0.2.15",
+    "jquery": "~2.1.4"
+  }
+}

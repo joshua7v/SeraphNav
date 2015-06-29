@@ -1,0 +1,8 @@
+# idea
+.idea/
+
+# pyc
+*.pyc
+
+# vendor
+vendor/

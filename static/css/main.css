@@ -1,0 +1,26 @@
+
+a:hover {
+    text-decoration:none;
+    color: #000000;
+}
+
+a {
+    color: #000000;
+}
+
+body {
+    font-family: "comic sans ms", "monaco", 'Hiragino Sans GB',Helvetica,Arial,sans-serif;
+}
+
+form {
+    width: 300px;
+}
+
+form .error-flash {
+    padding-top: 50px;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+}
