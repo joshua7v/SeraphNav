@@ -2,11 +2,14 @@ __author__ = 'Joshua'
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask.ext.mongoengine import MongoEngine
+from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
 app.config['MONGODB_SETTINGS'] = {"db": "SeraphNav"}
 db = MongoEngine(app)
 app.config.from_object(__name__)
+
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 
 @app.route('/index')
@@ -35,5 +38,5 @@ def share_a_site():
         return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.debug = True
+    app.debug = False
     app.run()

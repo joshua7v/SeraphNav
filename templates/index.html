@@ -7,7 +7,7 @@
     </section>
     <section layout="row" layout-sm="column" layout-align="center">
         {% for site in sites %}
-        <md-button style="height: auto; width: auto;" ng-href="http://{{ site.url }}">{{ site.title }}
+        <md-button style="height: auto; width: auto;" ng-href="{{ site.url }}">{{ site.title }}
             <md-tooltip>
                 {{ site.url }}
             </md-tooltip>
