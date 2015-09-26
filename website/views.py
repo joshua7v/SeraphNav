@@ -16,14 +16,23 @@ def index():
         user = User.query.filter_by(
             username=username
         ).first()
+
         if user:
-            sites = Site.query.filter_by(
-                nav_id=user.nav.first().id
-            ).all()
             is_authed = True
-            categories = Category.query.all()
-            return render_template('site/index.html', sites=sites, categories=categories, is_authed=is_authed)
-    return render_template('site/index.html')
+            categories = Category.query.filter_by(
+                user_id=user.id
+            ).all()
+            return render_template('site/index.html', username=user.username, categories=categories, is_authed=is_authed)
+        else:
+            redirect('/logout')
+    else:
+        user = User.query.filter_by(
+            username='default'
+        ).first()
+        categories = Category.query.filter_by(
+            user_id=user.id
+        )
+        return render_template('site/index.html', username=user.username, categories=categories, is_authed=False)
 
 
 @app.route('/share_a_site', methods=['GET', 'POST'])
@@ -34,8 +43,6 @@ def share_a_site():
     elif request.method == 'POST':
         title = request.form['site_title']
         desc = request.form['site_desc']
-        if desc == '':
-            desc = title
         url = request.form['site_url']
         category_name = request.form['site_category']
 
@@ -48,9 +55,9 @@ def share_a_site():
         ).first()
 
         if category is None:
-            category = Category(category_name)
+            category = Category(user, category_name)
 
-        site = Site(user.nav.first(), title, desc, url, category)
+        site = Site(user, title, desc, url, category)
         db.session.add(site)
         db.session.commit()
         return redirect(url_for('index'))

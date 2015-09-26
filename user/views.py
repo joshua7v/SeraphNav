@@ -1,9 +1,8 @@
 __author__ = 'Joshua'
 
 from SeraphNav import app, db, salt
-from flask import request, redirect, render_template, session, url_for
+from flask import request, redirect, render_template, session, url_for, flash
 from user.models import User
-from website.models import Nav
 from form import RegisterForm, LoginForm
 import bcrypt
 
@@ -21,7 +20,7 @@ def login():
             username=form.username.data
         ).first()
         if user:
-            if bcrypt.hashpw(form.password.data, salt) == user.password:
+            if bcrypt.hashpw(form.password.data.encode('utf8'), salt) == user.password:
                 session['username'] = user.username
                 if 'next' in session:
                     next = session.get('next')
@@ -40,21 +39,33 @@ def login():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+        email = User.query.filter_by(
+            email=form.email.data
+        ).first()
+
+        if email:
+            flash('email has been used.')
+            return redirect('/register')
+
+        username = User.query.filter_by(
+            username=form.username.data
+        ).first()
+
+        if username:
+            flash('username is in use.')
+            return redirect('/register')
+
+
         user = User(
             form.email.data,
             form.username.data,
-            bcrypt.hashpw(form.password.data, salt)
+            bcrypt.hashpw(form.password.data.encode('utf8'), salt)
         )
         db.session.add(user)
         db.session.commit()
 
-        nav = Nav(
-            user.id
-        )
-        db.session.add(nav)
-        db.session.commit()
-
-        return redirect('/login')
+        session['username'] = user.username
+        return redirect('/index')
     return render_template('user/register.html', form=form)
 
 
@@ -62,8 +73,3 @@ def register():
 def logout():
     session.pop('username')
     return redirect(url_for('index'))
-
-
-@app.route('/success')
-def success():
-    return "Registered!"

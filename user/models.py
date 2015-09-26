@@ -1,7 +1,6 @@
 __author__ = 'Joshua'
 
 from SeraphNav import db
-from website.models import Nav
 
 
 class User(db.Model):
@@ -9,14 +8,12 @@ class User(db.Model):
     email = db.Column(db.String(35), unique=True)
     username = db.Column(db.String(80), unique=True)
     password = db.Column(db.String(80))
-    is_admin = db.Column(db.Boolean)
 
 
-    def __init__(self, email, username, password, is_admin=False):
+    def __init__(self, email, username, password):
         self.email = email
         self.username = username
         self.password = password
-        self.is_admin = is_admin
 
 
     def __repr__(self):

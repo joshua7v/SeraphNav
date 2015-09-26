@@ -38,7 +38,7 @@ footer {
     text-align: center;
 }
 
-footer a {
+footer a, footer span {
     color: #686868;
 }
 
@@ -78,14 +78,6 @@ header {
 .form-add {
     color: #fff;
 }
-
-/*md-input-container .md-placeholder:not(.md-select-label), md-input-container label:not(.md-no-float) {*/
-    /*color: #fff;*/
-/*}*/
-
-/*md-input-container.md-input-focused label:not(.md-no-float), md-input-container.md-input-has-value label:not(.md-no-float) {*/
-    /*color: #fff;*/
-/*}*/
 
 md-input-container.md-input-focused:not(.md-input-invalid) label {
     /*color: rgb(63, 81, 181);*/
@@ -194,6 +186,7 @@ md-select {
 .form-container .form-group {
     margin: auto;
     width: 300px;
+    padding-bottom: 20px;
 }
 
 .category {
@@ -203,4 +196,9 @@ md-select {
 
 .category h2 {
     font-size: 26px;
+}
+
+#messages {
+    padding-top: 30px;
+    color: red;
 }

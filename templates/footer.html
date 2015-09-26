@@ -5,6 +5,7 @@
     <div class="sign-group">
         <div>
             {% if is_authed %}
+            <span>Hi, {{ username }}</span>
             <a href="{{ url_for('logout') }}" class="sign-in clear-focus">Sign Out</a>
             {% else %}
             <a href="{{ url_for('login') }}" class="sign-in clear-focus">Sign In</a>

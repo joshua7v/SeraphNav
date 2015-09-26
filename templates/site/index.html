@@ -16,10 +16,10 @@
         <div class="container-site-list">
             <ul class="list-group">
                 {% for site in category.sites %}
-                    {% if site.desc == site.title %}
-                        <li><a class="site-eff clear-focus" href="{{ site.url }}">{{ site.title }}</a></li>
-                    {% else %}
+                    {% if site.desc %}
                         <li class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ site.desc }}"><a class="site-eff clear-focus" href="{{ site.url }}">{{ site.title }}</a></li>
+                    {% else %}
+                        <li><a class="site-eff clear-focus" href="{{ site.url }}">{{ site.title }}</a></li>
                     {% endif %}
 
                 {% endfor %}
