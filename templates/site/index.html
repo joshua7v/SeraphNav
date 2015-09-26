@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-main">
+
+    <div class="add-a-site"><a href="{{ url_for('share_a_site') }}" class="site-eff clear-focus">+ Add a Site</a></div>
+
+    <div class="categories">
+
+        {% for category in categories %}
+
+        <div class="category">
+            <h2>{{ category.name }}️</h2>
+        </div>
+
+        <div class="container-site-list">
+            <ul class="list-group">
+                {% for site in category.sites %}
+                    {% if site.desc == site.title %}
+                        <li><a class="site-eff clear-focus" href="{{ site.url }}">{{ site.title }}</a></li>
+                    {% else %}
+                        <li class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ site.desc }}"><a class="site-eff clear-focus" href="{{ site.url }}">{{ site.title }}</a></li>
+                    {% endif %}
+
+                {% endfor %}
+
+            </ul>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+</div>
+{% endblock %}

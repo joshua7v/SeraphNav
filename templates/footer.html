@@ -1,8 +1,21 @@
-{% extends "base.html" %}
 {% block footer %}
 
 <footer class="navbar-fixed-bottom">
-    <p><a href="http://www.sigmastudio.me">By @Joshua</a></p>
+
+    <div class="sign-group">
+        <div>
+            {% if is_authed %}
+            <a href="{{ url_for('logout') }}" class="sign-in clear-focus">Sign Out</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="sign-in clear-focus">Sign In</a>
+            <a href="{{ url_for('register') }}" class="sign-up clear-focus">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p><a href="http://www.sigmastudio.me">By @Joshua</a></p>
+    </div>
 </footer>
 
 {% endblock%}

@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <title>Seraph Site Navigation</title>
 
-    <link rel="stylesheet" href="../static/css/cosmo.css"/>
-    <link rel="stylesheet" href="../static/css/main.css"/>
-    <link rel="stylesheet" href="../static/css/angular-material.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/angular-material.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cosmo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    <script src="../static/js/angular.min.js"></script>
-    <script src="../static/js/angular-animate.min.js"></script>
-    <script src="../static/js/angular-aria.min.js"></script>
-    <script src="../static/js/angular-material.min.js"></script>
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/app.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/angular.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/angular-animate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/angular-aria.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/angular-material.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
 </head>
 
-<body ng-controller="Controller">
+<body ng-controller="Controller as ctrl">
+
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
 
 {% block content %}
 {% endblock %}
@@ -25,7 +32,6 @@
 {% block footer %}
 {% include 'footer.html' %}
 {% endblock %}
-
 
 </body>
 </html>
